@@ -1,3 +1,5 @@
+use npm i create-react-tailwind-starter
+
 #change the version number
 
 #To publish a new version use 
