@@ -72,4 +72,4 @@ Contributions are welcome! Please open an issue or submit a pull request on GitH
 This project is licensed under the ISC License. See the LICENSE file for more details.
 
 ### Author
-Created by faizalmsdev
+Created by <a href="https://github.com/faizalmsdev">faizalmsdev</a> 
