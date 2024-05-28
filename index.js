@@ -84,7 +84,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1 className="text-4xl font-bold underline">Hello, Tailwind CSS!</h1>
+      <h1 className="text-4xl font-bold  text-sky-600">Start building your project with the power of React + Tailwind</h1>
     </div>
   );
 }
