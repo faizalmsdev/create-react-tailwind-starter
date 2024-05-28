@@ -62,14 +62,14 @@ module.exports = {
 
       console.log(chalk.blue('Removing unnecessary files...'));
 
-      const filesToDelete = [
+      const filesToDeleteSrc = [
         '/App.test.js',
         '/logo.svg',
         '/reportWebVitals.js',
         '/setupTests.js'
       ];
 
-      for (const file of filesToDelete) {
+      for (const file of filesToDeleteSrc) {
         const filePath = path.join('src', file);
         try {
           await fs.unlink(filePath);
@@ -82,6 +82,56 @@ module.exports = {
           }
         }
       }
+
+      console.log(chalk.blue('Removing unnecessary files from public...'));
+
+      const filesToDeletePublic = [
+        '/manifest.json',
+        '/robots.txt',
+        '/logo192.png',
+        '/logo512.png',
+        '/favicon.ico'
+      ];
+
+      for (const file of filesToDeletePublic) {
+        const filePath = path.join('public', file);
+        try {
+          await fs.unlink(filePath);
+          console.log(chalk.green(`Deleted ${filePath}`));
+        } catch (err) {
+          if (err.code !== 'ENOENT') {
+            throw err;
+          } else {
+            console.log(chalk.yellow(`File ${filePath} does not exist, skipping...`));
+          }
+        }
+      }
+
+      console.log(chalk.blue('Rewriting index.html...'));
+
+      const indexHtmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="image_path_here" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-tailwind-starter"
+    />
+
+    <title>React+Tailwind App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+      `;
+
+      await fs.writeFile('public/index.html', indexHtmlContent.trim());
 
       console.log(chalk.blue('Updating App.js, index.js, and creating App.css...'));
 
