@@ -63,16 +63,24 @@ module.exports = {
       console.log(chalk.blue('Removing unnecessary files...'));
 
       const filesToDelete = [
-        'src/App.test.js',
-        'src/logo.svg',
-        'src/reportWebVitals.js',
-        'src/setupTests.js'
+        '/App.test.js',
+        '/logo.svg',
+        '/reportWebVitals.js',
+        '/setupTests.js'
       ];
 
       for (const file of filesToDelete) {
-        await fs.unlink(path.join('src', file)).catch(err => {
-          if (err.code !== 'ENOENT') throw err;
-        });
+        const filePath = path.join('src', file);
+        try {
+          await fs.unlink(filePath);
+          console.log(chalk.green(`Deleted ${filePath}`));
+        } catch (err) {
+          if (err.code !== 'ENOENT') {
+            throw err;
+          } else {
+            console.log(chalk.yellow(`File ${filePath} does not exist, skipping...`));
+          }
+        }
       }
 
       console.log(chalk.blue('Updating App.js, index.js, and creating App.css...'));
