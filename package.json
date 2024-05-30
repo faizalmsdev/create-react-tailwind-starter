@@ -1,17 +1,19 @@
 {
   "name": "create-react-tailwind-starter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "CLI tool to set up a React project with Tailwind CSS",
   "main": "index.js",
   "bin": {
     "create-react-tailwind-starter": "index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "node check-version.js"
   },
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
-    "execa": "^5.1.1"
+    "execa": "^5.1.1",
+    "update-check": "^1.5.2"
   }
 }

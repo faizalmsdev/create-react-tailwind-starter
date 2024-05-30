@@ -63,22 +63,21 @@ module.exports = {
       console.log(chalk.blue('Removing unnecessary files...'));
 
       const filesToDeleteSrc = [
-        '/App.test.js',
-        '/logo.svg',
-        '/reportWebVitals.js',
-        '/setupTests.js'
+        'src/App.test.js',
+        'src/logo.svg',
+        'src/reportWebVitals.js',
+        'src/setupTests.js'
       ];
 
       for (const file of filesToDeleteSrc) {
-        const filePath = path.join('src', file);
         try {
-          await fs.unlink(filePath);
-          console.log(chalk.green(`Deleted ${filePath}`));
+          await fs.unlink(file);
+          console.log(chalk.green(`Deleted ${file}`));
         } catch (err) {
           if (err.code !== 'ENOENT') {
-            throw err;
+            console.error(chalk.red(`Error deleting ${file}: ${err.message}`));
           } else {
-            console.log(chalk.yellow(`File ${filePath} does not exist, skipping...`));
+            console.log(chalk.yellow(`File ${file} does not exist, skipping...`));
           }
         }
       }
@@ -86,23 +85,22 @@ module.exports = {
       console.log(chalk.blue('Removing unnecessary files from public...'));
 
       const filesToDeletePublic = [
-        '/manifest.json',
-        '/robots.txt',
-        '/logo192.png',
-        '/logo512.png',
-        '/favicon.ico'
+        'public/manifest.json',
+        'public/robots.txt',
+        'public/logo192.png',
+        'public/logo512.png',
+        'public/favicon.ico'
       ];
 
       for (const file of filesToDeletePublic) {
-        const filePath = path.join('public', file);
         try {
-          await fs.unlink(filePath);
-          console.log(chalk.green(`Deleted ${filePath}`));
+          await fs.unlink(file);
+          console.log(chalk.green(`Deleted ${file}`));
         } catch (err) {
           if (err.code !== 'ENOENT') {
-            throw err;
+            console.error(chalk.red(`Error deleting ${file}: ${err.message}`));
           } else {
-            console.log(chalk.yellow(`File ${filePath} does not exist, skipping...`));
+            console.log(chalk.yellow(`File ${file} does not exist, skipping...`));
           }
         }
       }
@@ -142,7 +140,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1 className="text-4xl font-bold  text-sky-600">Start building your project with the power of React + Tailwind</h1>
+      <h1 className="text-4xl font-bold text-sky-600">Start building your project with the power of React + Tailwind</h1>
     </div>
   );
 }
